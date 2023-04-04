@@ -41,7 +41,7 @@ fs.readFile('students.txt', 'utf8', (err, data) => {
     }
 });
 
-// 3. Recherchez dans le tableau l'étudiant qui a eu la meilleur node.
+// 3. Recherchez dans le tableau l'étudiant qui a eu la meilleur note.
 fs.readFile('students.txt', 'utf8', (err, data) => {
     if (err) {
         console.error(err);
