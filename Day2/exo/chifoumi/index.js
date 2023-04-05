@@ -43,8 +43,8 @@ async function playRound() {
   const player1Choice = await getPlayerChoice(player1);
   const player2Choice = getRandomChoice();
 
-  console.log(`${player1.name} a choisi ${player1Choice}.`);
-  console.log(`${player2.name} a choisi ${player2Choice}.\n`);
+  console.log(`${player1.name} has chosen ${player1Choice}.`);
+  console.log(`${player2.name} has chosen ${player2Choice}.\n`);
 
   if (player1Choice === player2Choice) {
       console.log(`Equal !`);
