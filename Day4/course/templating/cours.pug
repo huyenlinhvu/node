@@ -1,0 +1,93 @@
+nav 
+    ul  
+        li 
+            a(href='/home') Home 
+        li
+            a(href='/porfolio') Porfolio 
+        li
+            a(href='/contact') Contact 
+
+nav: ul 
+    li: a(href='/home') Home 
+    li: a(href='/porfolio') Porfolio 
+    li: a(href='/contact') Contact
+
+input(type='radio' name='gender' value='Male') 
+
+input(
+    type='radio' 
+    name='gender' 
+    value='Male'
+) 
+
+
+main#container 
+    article 
+        .article-inner <!--  une div avec une class 'article-inner' !-->
+            p. <!-- recupere un bloc de texte sur plusieurs lignes !-->
+                Lorem ipsum
+                gjhhl,jhio 
+                hjjjjjkjj
+p 
+    Ceci est un text <strong> gras </strong>
+p.
+    Un nouveau text 
+        strong gras
+div 
+    p je suis dans le paragraphe
+
+h1 Hello #{name}
+p Vous avez #{age} et etre #{gender}
+
+h1 Hello #{name}
+p Votre age: 
+    output = age
+select option(value=gender) = gender
+article 
+    - const {title, date, author} = post 
+    h1 = title 
+    p Written by #{author}
+    time(datetime= date.toISOString()) = date.toLocalDateString()
+
+article 
+    -
+        const {title, date, author} = post;
+        const ISODate = date.toISOString();
+        const formattedDate = date.toLocalDateString();
+
+    h1 = title 
+    p Written by #{author}
+    time(datetime=ISODate) = formattedDate 
+input(type='text' id='message')
+p Hello <span id="messageValue">></span>
+
+script const messageEl = document.getElementById('message');
+const span = document.getElementById('Value');
+messageEl.oninput = function(event) {
+    span.textContent = event.target.value;
+}
+
+if results 
+    if results.length > 1
+        p Il y a #{results.legth} résultats de recherche 
+    else if results.length === 1
+        p Il y a un unique résultat 
+    else 
+        p aucun résultat 
+else 
+    p Aucune recherche effectué
+
+unless user.logged 
+    p Veuillez vous authentifier
+if !user.logged
+    p Veuillez vous authentifier
+
+case user.gender 
+    when 'M'
+        p Homme 
+    when 'F'
+        p Femme
+    default 
+        p 'Autre'
+//- Commentaire pug, non affchier dans le rendu
+<!-- Conmentaire html !-->

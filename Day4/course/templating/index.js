@@ -1,11 +1,11 @@
 const pug = require('pug');
 
 //compile
-const template = `
-if age >= 18
-    h1 access granted!
-else
-    h1 Permission denied! `;
+// const template = `
+// if age >= 18
+//     h1 access granted!
+// else
+//     h1 Permission denied! `;
 
 // const compileTemplate = pug.compile(template);
 
@@ -31,9 +31,19 @@ else
 //     console.log(data);
 // })
 
-try {
-    const compileTemplate = pug.compile(template);
-} catch (err){
-    res.writeHead(500, {'Content-Type': 'text/plain'});
-    res.end(err.message);
+// try {
+//     const compileTemplate = pug.compile(template);
+// } catch (err){
+//     res.writeHead(500, {'Content-Type': 'text/plain'});
+//     res.end(err.message);
+// }
+
+//SYNTAXE de PUG
+const compileTemplate3 = pug.compileFile('cours.pug');
+const data = {
+    name: 'Norbert',
+    age: 33,
+    gender: 'M'
 }
+
+compileTemplate(data)
