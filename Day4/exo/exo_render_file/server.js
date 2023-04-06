@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
-
+const hostname = 'localhost';
+const port = 3000;
 const students = [
     { name : "Sonia"},
     { name : "Antoine"}
@@ -31,20 +32,20 @@ const server = http.createServer((req, res) => {
     }
 
     if (req.method === 'POST' && url === '') {
-        const newStudent = JSON.parse(body);
-        students.push(newStudent);
-        console.log(students)
         let body = '';
         req.on('data', data => {
             body += data;
         });
         req.on('end', () => {
-            res.writeHead(200, { 'Content-Type' : 'application/json' });
-            res.end(JSON.stringify({ "result" : body }));
+            const replacer = new RegExp(/\+/, "g");
+            const name = body.toString().split(/=/).pop().replace(replacer, '');
+            if(name) students.push({name});
+            res.writeHead(301, { Location : `http://${hostname}:${port}`});
+            res.end();
         });
     }
 });
 
-server.listen(3000, () => {
+server.listen(port, hostname, ()=> {
     console.log('Server running at http://localhost:3000/');
 });
