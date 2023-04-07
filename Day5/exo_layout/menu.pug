@@ -1,0 +1,9 @@
+nav
+    ul
+        each item in menuItems
+        if item.isActive
+            li.nav-active
+            a(href=item.path)= item.title
+        else
+            li
+            a(href=item.path)= item.title
