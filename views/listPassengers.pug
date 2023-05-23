@@ -2,6 +2,28 @@ extends layout
 
 block content
   h1 List of Passengers
+
+  a(href="/logout") Logout
+
+  form(action="/list", method="GET")
+    label(for="gender") Gender:
+    select(name="gender" id="gender")
+      option(value="") All
+      option(value="male") Male
+      option(value="female") Female
+
+    label(for="age") Age:
+    input(type="number" name="age" id="age")
+
+    label(for="ticketClass") Ticket Class:
+    select(name="ticketClass" id="ticketClass")
+      option(value="") All
+      option(value="firstClass") First Class
+      option(value="secondClass") Second Class
+      option(value="thirdClass") Third Class
+
+    button(type="submit") Filter
+
   ul
     each passenger in passengers
-        li= passenger
+      li= passenger
