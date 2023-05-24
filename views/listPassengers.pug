@@ -5,6 +5,8 @@ block content
 
   a(href="/logout") Logout
 
+  <canvas id="passengerChart"></canvas>
+
   form(action="/list", method="GET")
     label(for="gender") Gender:
     select(name="gender" id="gender")
@@ -13,14 +15,18 @@ block content
       option(value="female") Female
 
     label(for="age") Age:
-    input(type="number" name="age" id="age")
+    select(name="age" id="age")
+      option(value="") All
+      option(value="0-20") 0-20
+      option(value="21-50") 21-50
+      option(value="50+") 50+
 
     label(for="ticketClass") Ticket Class:
     select(name="ticketClass" id="ticketClass")
       option(value="") All
-      option(value="firstClass") First Class
-      option(value="secondClass") Second Class
-      option(value="thirdClass") Third Class
+      option(value="1") First Class
+      option(value="2") Second Class
+      option(value="3") Third Class
 
     button(type="submit") Filter
 
