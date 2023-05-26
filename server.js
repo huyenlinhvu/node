@@ -21,6 +21,8 @@ app.set("view engine", "pug");
 // Minifier automatiquement les templates PUG en production, mais pas en dev
 app.locals.pretty = NODE_ENV !== "production" ? true : false;
 
+app.use(express.static("public"));
+
 // Configure middlewares
 app.use(
   session({
@@ -111,12 +113,6 @@ app.post("/login", async (req, res) => {
   // Redirect to the listing passengers page
   res.redirect("/list");
 });
-
-// Define the logout route
-// app.get("/logout", (req, res) => {
-//   req.logout();
-//   res.redirect("/login");
-// });
 
 app.get("/logout", (req, res) => {
   if (req.session) {

@@ -9,18 +9,14 @@ appRouter.get("/", (req, res) => {
 
 appRouter.get("/list", async (req, res) => {
   try {
-    let filter = {}; // Initialize an empty filter object
+    const filter = {}; // Initialize an empty filter object
 
     // Retrieve the filter values from the query parameters
-    const { gender, ticketClass, age } = req.query;
+    const { gender, age, ticketClass } = req.query;
 
     // Add the filter conditions based on the selected criteria
     if (gender && gender !== "all") {
       filter.Sex = gender;
-    }
-
-    if (ticketClass && ticketClass !== "all") {
-      filter.Pclass = ticketClass;
     }
 
     if (age && age !== "") {
@@ -33,8 +29,12 @@ appRouter.get("/list", async (req, res) => {
       }
     }
 
+    if (ticketClass && ticketClass !== "all") {
+      filter.Pclass = Number(ticketClass);
+    }
+
     const passengers = await Passenger.find(filter);
-    res.render("listPassengers", { passengers, messages: [] }); // Pass empty array as default value for messages
+    res.render("listPassengers", { passengers, messages: [] });
   } catch (error) {
     res.status(500).send("Error retrieving passengers");
   }

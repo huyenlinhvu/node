@@ -1,0 +1,215 @@
+@media only screen and (max-width: 480px) {
+  body {
+    padding: 30px;
+  }
+}
+
+@media only screen and (min-width: 1092px) {
+  body {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+}
+
+h1 {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+/* Homepage */
+.homepage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+/* Page list of Passengers */
+.logout {
+  display: flex;
+  justify-content: right;
+  color: black;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 50px;
+  gap: 20px;
+  @media only screen and (min-width: 1092px) {
+    flex-direction: row;
+    gap: 25px;
+  }
+}
+
+.filter label {
+  margin-right: 10px;
+}
+
+.filter button {
+  width: fit-content;
+}
+
+#passengerChart {
+  padding-bottom: 50px;
+}
+
+.table {
+  border-radius: 5px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  padding: 8px;
+}
+
+.table td {
+  border-right: 1px solid #f8f8f8;
+  font-size: 14px;
+}
+
+.table thead th {
+  color: #ffffff;
+  background: #4fc3a1;
+}
+
+.table thead th:nth-child(odd) {
+  color: #ffffff;
+  background: #324960;
+}
+
+.table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+  .table {
+    display: block;
+    width: 100%;
+  }
+  .table-wrapper:before {
+    content: "Scroll horizontally >";
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: white;
+    padding: 0 0 10px;
+  }
+  .table thead,
+  .table tbody,
+  .table thead th {
+    display: block;
+  }
+  .table thead th:last-child {
+    border-bottom: none;
+  }
+  .table thead {
+    float: left;
+  }
+  .table tbody {
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+  }
+  .table td,
+  .table th {
+    padding: 20px 0.625em 0.625em 0.625em;
+    height: 60px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 120px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+  }
+  .table thead th {
+    text-align: left;
+    border-bottom: 1px solid #f7f7f9;
+  }
+  .table tbody tr {
+    display: table-cell;
+  }
+  .table tbody tr:nth-child(odd) {
+    background: none;
+  }
+  .table tr:nth-child(even) {
+    background: transparent;
+  }
+  .table tr td:nth-child(odd) {
+    background: #f8f8f8;
+    border-right: 1px solid #e6e4e4;
+  }
+  .table tr td:nth-child(even) {
+    border-right: 1px solid #e6e4e4;
+  }
+  .table tbody td {
+    display: block;
+    text-align: center;
+  }
+}
+
+/* Page Login and Signup*/
+.login,
+.signup {
+  width: fit-content;
+  margin: auto;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: rgba(75, 192, 192);
+}
+
+.login form,
+.signup form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login label,
+.signup label {
+  margin-bottom: 10px;
+}
+
+.name,
+.email,
+.password {
+  display: flex;
+  flex-direction: column;
+}
+
+.name input,
+.email input,
+.password input {
+  border: 1px;
+  padding: 7px 5px;
+  border-radius: 5px;
+}
+
+.button {
+  margin: 10px auto;
+}
+
+.button input {
+  padding: 7px 12px;
+  border: 1px white solid;
+  border-radius: 5px;
+  background-color: white;
+}
+
+/* Footer */
+footer {
+  width: fit-content;
+  margin: 50px auto;
+}

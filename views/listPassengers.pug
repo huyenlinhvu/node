@@ -1,35 +1,137 @@
 extends layout
 
 block content
+
+  a(href="/logout", class="logout") Logout
+
   h1 List of Passengers
 
-  a(href="/logout") Logout
+  form(action="/list", method="GET", class="filter")
+    div
+      label(for="gender") Gender:
+      select(name="gender" id="gender")
+        option(value="") All
+        option(value="male") Male
+        option(value="female") Female
 
-  <canvas id="passengerChart"></canvas>
+    div
+      label(for="age") Age:
+      select(name="age" id="age")
+        option(value="") All
+        option(value="0-20") 0-20
+        option(value="21-50") 21-50
+        option(value="50+") 50+
 
-  form(action="/list", method="GET")
-    label(for="gender") Gender:
-    select(name="gender" id="gender")
-      option(value="") All
-      option(value="male") Male
-      option(value="female") Female
-
-    label(for="age") Age:
-    select(name="age" id="age")
-      option(value="") All
-      option(value="0-20") 0-20
-      option(value="21-50") 21-50
-      option(value="50+") 50+
-
-    label(for="ticketClass") Ticket Class:
-    select(name="ticketClass" id="ticketClass")
-      option(value="") All
-      option(value="1") First Class
-      option(value="2") Second Class
-      option(value="3") Third Class
+    div
+      label(for="ticketClass") Ticket Class:
+      select(name="ticketClass" id="ticketClass")
+        option(value="") All
+        option(value="1") First Class
+        option(value="2") Second Class
+        option(value="3") Third Class
 
     button(type="submit") Filter
 
-  ul
-    each passenger in passengers
-      li= passenger
+  if passengers.length > 0
+  canvas#passengerChart
+
+  script.
+    document.addEventListener("DOMContentLoaded", function () {
+      const passengers = !{JSON.stringify(passengers)};
+      const genderFilter = document.getElementById("gender").value;
+      const ageFilter = document.getElementById("age").value;
+      const ticketClassFilter = document.getElementById("ticketClass").value;
+
+      // Apply the filters to the passengers array
+      let filteredPassengers = passengers;
+
+      if (genderFilter) {
+        filteredPassengers = filteredPassengers.filter(p => p.Sex === genderFilter);
+      }
+
+      if (ageFilter) {
+        if (ageFilter === "0-20") {
+          filteredPassengers = filteredPassengers.filter(p => p.Age <= 20);
+        } else if (ageFilter === "21-50") {
+          filteredPassengers = filteredPassengers.filter(p => p.Age >= 21 && p.Age <= 50);
+        } else if (ageFilter === "50+") {
+          filteredPassengers = filteredPassengers.filter(p => p.Age >= 50);
+        }
+      }
+
+      if (ticketClassFilter) {
+        filteredPassengers = filteredPassengers.filter(p => p.Pclass === parseInt(ticketClassFilter));
+      }
+
+      // Count the number of people survived and not survived
+      const survivedCount = filteredPassengers.filter(p => p.Survived).length;
+      const notSurvivedCount = filteredPassengers.filter(p => !p.Survived).length;
+
+      const data = [survivedCount, notSurvivedCount];
+      const labels = ["Survived", "Not Survived"];
+
+      const ctx = document.getElementById("passengerChart").getContext("2d");
+      const chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Survival",
+            data: data,
+            backgroundColor: [
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(255, 99, 132, 0.6)",
+            ],
+            borderColor: [
+              "rgba(75, 192, 192, 1)",
+              "rgba(255, 99, 132, 1)",
+            ],
+            borderWidth: 1,
+          }],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              stepSize: 1,
+            },
+          },
+        },
+      });
+    });
+
+
+
+  table.table
+    thead
+      tr
+        th Passenger ID
+        th Name
+        th Survived
+        th Sex
+        th Age
+        th Pclass
+        th SibSp
+        th Parch
+        th Ticket
+        th Fare
+        th Cabin
+        th Embarked
+    tbody
+      each passenger in passengers
+        tr
+          td= passenger.PassengerId
+          td= passenger.Name
+          td= passenger.Survived
+          td= passenger.Sex
+          td= passenger.Age
+          td= passenger.Pclass
+          td= passenger.SibSp
+          td= passenger.Parch
+          td= passenger.Ticket
+          td= passenger.Fare
+          td= passenger.Cabin
+          td= passenger.Embarked
+
+  
